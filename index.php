@@ -1,14 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crud App</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
-</head>
-<body>
+<?php include('header.php')?>
+<?php include('dbConn.php')?>   
 
-        <div class="container">
+            <div class=" box1">
+                <h2>All Students</h2>
+                <button class="btn btn-primary">Add Students </button>
+            </div>
+            
+
             <table class="table table-hover table-bordererd table-striped">
                 <tr>
                     <th>Id</th>
@@ -17,25 +15,33 @@
                     <th>Age</th>
                 </tr>
 
-                <tr>
-                    <td>3</td>
-                    <td>kamal</td>
-                    <td>Bandara</td>
-                    <td>26</td>
+                <?php
+                    
+                    $query = "SELECT * FROM students";
+                    $result = mysqli_query($conn, $query);
+                
+                    if(!$result){
+                        die("Query Failed" . mysqli_error($conn));
 
-                </tr>
+                    }
+                    else{
+                        while($row = mysqli_fetch_assoc($result)){
+                            ?>
 
-                <tr>
-                    <td>3</td>
-                    <td>kamal</td>
-                    <td>Bandara</td>
-                    <td>26</td>
 
-                </tr>
+                            <tr>
+                                <td><?php echo $row['id']; ?></td>
+                                <td><?php echo $row['first_name']; ?></td>
+                                <td><?php echo $row['last_name']; ?></td>
+                                <td><?php echo $row['age']; ?></td>
+                            </tr>    
+
+                            <?php
+
+                        }
+                    }
+                
+                
+                ?>
             </table>
-        </div>
-    
-</body>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
-</html>
+<?php include('footer.php')?>
