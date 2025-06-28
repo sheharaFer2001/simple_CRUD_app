@@ -9,13 +9,15 @@
         if($fname != "" && $lname != "" && $age != "") {
             include 'dbConn.php';
 
-            $sql = "INSERT INTO students (first_name, last_name, age) VALUES ('$fname', '$lname', '$age')";
+            $sql = "INSERT INTO `students` (`first_name`, `last_name`, `age`) VALUES ('$fname', '$lname', '$age')";
             $result = mysqli_query($conn, $sql);
 
             if($result) {
-                header("Location: index.php?msg=Data Inserted Successfully");
+                header("Location: index.php?msg=Data Inserted Successfully?status?ok");
+                
             } else {
-                header("Location: index.php?msg=Error Inserting Data");
+                header("Location: index.php?msg=Error Inserting Data?status?error");
+                die("Query Failed" . mysqli_error($conn));
             }
         } else {
             header("Location: index.php?msg=Please Fill All Fields");

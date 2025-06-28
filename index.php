@@ -14,6 +14,8 @@
         <th>First Name</th>
         <th>Last Name</th>
         <th>Age</th>
+        <th>Update</th>
+        <th>Delete</th>
     </tr>
 
     <?php
@@ -33,6 +35,8 @@
                 <td><?php echo $row['first_name']; ?></td>
                 <td><?php echo $row['last_name']; ?></td>
                 <td><?php echo $row['age']; ?></td>
+                <td><a href="update_page_1.php?id=<?php echo $row['id'];?>" class="btn btn-success">Update</a></td>
+                <td><a href="delete_page_1.php?id=<?php echo $row['id'];?>" class="btn btn-danger">Delete</a></td>
             </tr>
 
     <?php
@@ -47,7 +51,7 @@
 <?php
 
     if (isset($_GET['msg'])) {
-        echo "<div class='alert alert-danger' role='alert'>" . $_GET['msg'] . "</div>";
+        echo "<div class='alert alert-success' role='alert'>" . $_GET['msg'] . "</div>";
     }
 ?>
 
@@ -68,17 +72,17 @@
                      
                         <div class="form-group">
                             <lable for="f_name">First name</lable>
-                            <input type="text" class="form-control" name="f_name" placeholder="Enter First Name" >
+                            <input type="text" class="form-control" name="f_name" placeholder="Enter First Name"  required >
                         </div>
 
                         <div class="form-group">
                             <lable for="l_name">Last Name</lable>
-                            <input type="text" class="form-control" name="l_name" placeholder="Enter Last Name" >
+                            <input type="text" class="form-control" name="l_name" placeholder="Enter Last Name"  required>
                         </div>
 
                         <div class="form-group">
                             <lable for="f_name">Age</lable>
-                            <input type="text" class="form-control" name="age" placeholder="Enter age" >
+                            <input type="text" class="form-control" name="age" placeholder="Enter age"  required>
                         </div>
                     
                 </div>
